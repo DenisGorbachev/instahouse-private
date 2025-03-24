@@ -71,3 +71,5 @@
 ## Definitions
 
 ### Request for proposals
+
+A message where the sender is asking for quotes on a house.
