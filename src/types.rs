@@ -6,3 +6,5 @@ mod person;
 pub use person::*;
 mod bank;
 pub use bank::*;
+mod person_action;
+pub use person_action::*;

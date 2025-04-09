@@ -5,6 +5,7 @@ use std::rc::Rc;
 
 #[derive(new, Getters, From, Into, Ord, PartialOrd, Eq, PartialEq, Default, Hash, Clone, Debug)]
 pub struct Bank {
+    name: String,
     users: Vec<Rc<User>>,
     accounts: Vec<Rc<Account>>,
 }
@@ -24,7 +25,7 @@ impl Bank {
         todo!()
     }
 
-    pub fn transfer(&mut self, _from: &Login, _to: &Login, _amount: Amount, _password: Password) -> Result<(), TransferError> {
+    pub fn transfer(&mut self, _from: &Login, _to: &Login, _amount: Amount, _password: PasswordBuf) -> Result<(), TransferError> {
         todo!()
     }
 }

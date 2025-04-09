@@ -7,5 +7,7 @@ pub enum AssetName {
     USD,
     THB,
     RUB,
+    CNY,
 }
+
 impl AssetName {}

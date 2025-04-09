@@ -1,1 +1,3 @@
-pub type Password = String;
+pub type Password = str;
+
+pub type PasswordBuf = String;
