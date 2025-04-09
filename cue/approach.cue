@@ -1,19 +1,15 @@
-todo: [
-	"Import #DatabaseName and #LanguageName from tms.cue",
-]
+#database_name: "PostgreSQL" | "Convex"
 
-#DatabaseName: "PostgreSQL" | "Convex"
+#language_name: "Coda" | "TypeScript" | "Rust" | "SQL"
 
-#LanguageName: "Coda" | "TypeScript" | "Rust" | "SQL"
+#storage: {git: true} | {saas: true} | {database: #database_name}
 
-#Storage: {git: true} | {saas: true} | {database: #DatabaseName}
-
-#Architecture: {
-	storage!: #Storage
-	languages!: [#LanguageName, ...#LanguageName]
+#architecture: {
+	storage!: #storage
+	languages!: [#language_name, ...#language_name]
 }
 
-architectures: [_]: #Architecture
+architectures: [_]: #architecture
 architectures: {
 	custom: {
 		storage: {database: "Convex"}
@@ -25,6 +21,5 @@ architectures: {
 	}
 	appsmith: {
 		storage: {database: "Convex"}
-
 	}
 }
