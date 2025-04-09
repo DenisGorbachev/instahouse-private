@@ -1,5 +1,67 @@
 import "time"
 
+#project: {
+	simulator: {
+		filters: {
+			can_output_tasks_for_agents: true
+			supports_multiple_agents:    true
+		}
+		results: [_]: #simulation
+		results: {
+			with_final_capital_more_than_initial_capital: {
+				states: {
+					initial: #state
+					final:   #state
+				}
+				filters: {
+					final_capital_higher_than_initial_capital: true & states.final.capital > states.initial.capital
+				}
+			}
+			// there must be a simulation that shows
+			with_final_capital_less_or_equal_to_initial_capital: {
+				states: {
+					initial: #state
+					final:   #state
+				}
+				filters: {
+					final_capital_higher_than_initial_capital: true & states.final.capital <= states.initial.capital
+				}
+			}
+		}
+	}
+	#simulation: {
+		seed: #seed
+		states: [_]: #state
+		states: {
+			initial: #state
+			final:   #state
+		}
+		...
+	}
+	#state: {
+		capital: uint
+		...
+	}
+	simulator: {
+		filters: {
+			can_simulate_sale_of_property: {
+				can_show_revenue_expected_value: {
+					can_be_positive: true
+					can_be_positive: true
+				}
+			}
+		}
+		filters_signoff: #signoff
+	}
+}
+
+// seed is a path to the file; this file contains a sequence of bytes that are used as seed for the data
+// see https://docs.rs/arbitrary/1.4.1/arbitrary/index.html
+#seed: #path
+
+// TODO: validate the string as a filesystem path relative to the project root
+#path: string
+
 _tasksAll: #nodes
 _tasksAll: [
 	{
@@ -108,6 +170,14 @@ tasks: _tasksActive
 _now: time.Time @tag(n,var=now)
 
 _time: zero: time.Unix(0, 0)
+
+#user: "JuliaLebedeva" | "DenisGorbachev"
+
+#datetime: time.Format(time.UnixDate)
+_datetime_examples: [...#datetime]
+_datetime_examples: ["Mon Jan 02 15:04:05 MST 2006"]
+
+#signoff: [#user, #datetime]
 
 // TODO: Import from a package
 // The struct variant is deliberately left open to allow the user to add custom keys

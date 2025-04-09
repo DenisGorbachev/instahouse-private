@@ -19,6 +19,8 @@ pre-commit:
       run: mise run lint:docs
     lint:deps:
       run: mise run lint:deps
+    test:cue:
+      run: mise run test:cue
     test:code:
       run: mise run test:code --no-fail-fast
     sort:deps:

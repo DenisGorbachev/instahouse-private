@@ -1,6 +1,6 @@
 #database_name: "PostgreSQL" | "Convex"
 
-#language_name: "Coda" | "TypeScript" | "Rust" | "SQL"
+#language_name: "Coda" | "AppSmith" | "TypeScript" | "Rust" | "SQL"
 
 #storage: {git: true} | {saas: true} | {database: #database_name}
 
@@ -21,5 +21,6 @@ architectures: {
 	}
 	appsmith: {
 		storage: {database: "Convex"}
+		languages: ["AppSmith"]
 	}
 }

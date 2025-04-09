@@ -45,6 +45,9 @@ run = "cargo nextest run --all-features"
 [tasks."test:docs"]
 run = "cargo test --doc"
 
+[tasks."test:cue"]
+run = "cue vet --inject-vars --concrete $(fd --glob '*.cue' cue)"
+
 [tasks."sort:deps"]
 run = "cargo sort"
 
