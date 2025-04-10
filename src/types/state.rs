@@ -1,27 +1,33 @@
-use crate::{Bank, Person, PersonAction};
+use crate::{shared, Bank, Person, PersonAction, Property, Shared, ThailandLandDepartment};
 use derive_getters::Getters;
 use derive_more::{From, Into};
 use derive_new::new;
 use rand::seq::SliceRandom;
 use rand::Rng;
-use std::cell::RefCell;
-use std::rc::Rc;
+use stub_macro::stub;
 
 #[derive(new, Getters, From, Into, Ord, PartialOrd, Eq, PartialEq, Default, Clone, Debug)]
 pub struct State {
-    persons: Vec<Rc<RefCell<Person>>>,
-    banks: Vec<Rc<RefCell<Bank>>>,
+    persons: Vec<Shared<Person>>,
+    banks: Vec<Shared<Bank>>,
+    properties: Vec<Shared<Property>>,
+    /// TODO: There must be one land department per district
+    land_department: ThailandLandDepartment,
 }
 
 impl State {
     pub fn init() -> Self {
-        let clint = Rc::new(RefCell::new(Person::default()));
-        let kasikorn = Rc::new(RefCell::new(Bank::default()));
+        let clint = shared(Person::default());
+        let kasikorn = shared(Bank::default());
         let persons = vec![clint];
         let banks = vec![kasikorn];
+        let properties = vec![];
+        let land_department = stub!();
         Self {
             persons,
             banks,
+            properties,
+            land_department,
         }
     }
 
@@ -41,7 +47,7 @@ impl State {
         });
         if rng.random::<u8>() % 10 == 0 {
             let person = Person::default();
-            self.persons.push(Rc::new(RefCell::new(person)));
+            self.persons.push(shared(person));
         }
     }
 }

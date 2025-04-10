@@ -21,6 +21,7 @@ derive-new = "0.7.0"
 derive_more = { version = "2.0.1", features = ["full"] }
 fmt-derive = "0.1.2"
 helpful = { git = "https://github.com/DenisGorbachev/helpful" }
+ordered-float = { version = "5.0.0", features = ["rand"] }
 proptest = { version = "1.6.0", features = ["proptest-macro"] }
 proptest-derive = { version = "0.5.1" }
 rand = { version = "0.9.0" }
