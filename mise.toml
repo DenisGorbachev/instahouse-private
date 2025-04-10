@@ -17,6 +17,7 @@ cargo-binstall = "1.10.15"
 "cargo:cargo-hack" = "0.6.33"
 "cargo:cargo-machete" = "0.7.0"
 "cargo:cargo-nextest" = "0.9.72"
+"aqua:cue-lang/cue" = "0.12.1"
 
 [tasks."build"]
 run = "cargo build"
@@ -46,7 +47,7 @@ run = "cargo nextest run --all-features"
 run = "cargo test --doc"
 
 [tasks."test:cue"]
-run = "cue vet --inject-vars --concrete $(fd --glob '*.cue' cue)"
+run = "cue vet --inject-vars --concrete $(find cue -type f -name '*.cue')"
 
 [tasks."sort:deps"]
 run = "cargo sort"
