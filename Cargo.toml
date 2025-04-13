@@ -21,14 +21,18 @@ derive-new = "0.7.0"
 derive_more = { version = "2.0.1", features = ["full"] }
 fmt-derive = "0.1.2"
 helpful = { git = "https://github.com/DenisGorbachev/helpful" }
+itertools = { version = "0.14.0" }
 ordered-float = { version = "5.0.0", features = ["rand"] }
 proptest = { version = "1.6.0", features = ["proptest-macro"] }
 proptest-derive = { version = "0.5.1" }
 rand = { version = "0.9.0" }
+serde = { version = "1.0.219", features = ["derive"] }
 standard-traits = { git = "https://github.com/DenisGorbachev/standard-traits" }
 strum = { version = "0.27.1", features = ["derive"] }
 stub-macro = { version = "0.1.3" }
 subtype = { git = "https://github.com/DenisGorbachev/subtype" }
+time = { version = "0.3.41" }
+vec-of-enum = "0.1.1"
 
 [package.metadata.cargo-machete]
-ignored = ["stub-macro", "standard-traits", "helpful", "subtype", "proptest"]
+ignored = ["standard-traits", "helpful", "proptest", "serde"]
