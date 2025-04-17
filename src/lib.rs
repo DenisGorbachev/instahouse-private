@@ -1,10 +1,12 @@
 //! This is a module-level comment for a Rust lib
-mod types;
+mod models;
 
-pub use types::*;
+pub use models::*;
 mod traits;
 pub use traits::*;
 mod errors;
 pub use errors::*;
 mod checkers;
 pub use checkers::*;
+mod tools;
+pub use tools::*;

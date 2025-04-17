@@ -29,7 +29,7 @@ run = "cargo fmt --all"
 depends = ["lint:code", "lint:docs", "lint:deps"]
 
 [tasks."test"]
-depends = ["test:code", "test:docs"]
+depends = ["test:code", "test:docs", "test:cue"]
 
 [tasks."lint:code"]
 run = "cargo clippy --all-targets --all-features -- -D warnings"

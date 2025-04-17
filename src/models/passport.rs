@@ -1,4 +1,4 @@
-use crate::types::passport_number::PassportNumber;
+use crate::models::passport_number::PassportNumber;
 use crate::{Country, IssuedOn, IssuedOnNotInThePastError, PassportValidationErrors, Validate};
 use derive_getters::Getters;
 use derive_more::{From, Into};

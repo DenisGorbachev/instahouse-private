@@ -61,3 +61,7 @@ pub use passport_number::*;
 mod issued_on;
 
 pub use issued_on::*;
+mod natural_message;
+pub use natural_message::*;
+mod natural_conversation;
+pub use natural_conversation::*;

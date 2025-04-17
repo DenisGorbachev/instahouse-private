@@ -7,9 +7,9 @@ use rand::seq::SliceRandom;
 use rand::Rng;
 use std::rc::Rc;
 use stub_macro::stub;
-use time::OffsetDateTime;
+use time::{Duration, OffsetDateTime};
 
-#[derive(new, Getters, From, Into, Ord, PartialOrd, Eq, PartialEq, Default, Clone, Debug)]
+#[derive(new, Getters, From, Into, Ord, PartialOrd, Eq, PartialEq, Clone, Debug)]
 pub struct State {
     persons: Vec<Shared<Person>>,
     banks: Vec<Shared<Bank>>,
@@ -18,6 +18,7 @@ pub struct State {
     properties: Vec<Shared<Property>>,
     /// TODO: There must be one land department per district
     land_department: Vec<Shared<ThailandLandDepartment>>,
+    now: OffsetDateTime,
 }
 
 impl Validate for State {
@@ -48,7 +49,7 @@ impl Validate for State {
 }
 
 impl State {
-    pub fn init() -> Self {
+    pub fn create(now: OffsetDateTime, _rng: &mut impl Rng) -> Self {
         let clint = shared(Person::default());
         let kasikorn = shared(Bank::default());
         let persons = vec![clint];
@@ -62,6 +63,7 @@ impl State {
             passports,
             properties,
             land_department,
+            now,
         }
     }
 
@@ -83,5 +85,20 @@ impl State {
             let person = Person::default();
             self.persons.push(shared(person));
         }
+        // TODO: Should we actually increment by second or longer?
+        self.now += Duration::SECOND;
+    }
+
+    pub fn run_n(&mut self, rng: &mut impl Rng, mut steps: u64) -> Result<(), StateValidationErrors> {
+        while steps > 0 {
+            self.run(rng);
+            // TODO: don't pass `now` here (maybe implement the validation that requires upstream data in the structure that provides that upstream data?)
+            let errors = self.validate(self.now);
+            if !errors.is_empty() {
+                return Err(errors);
+            }
+            steps -= 1;
+        }
+        Ok(())
     }
 }

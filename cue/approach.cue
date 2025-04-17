@@ -1,3 +1,5 @@
+package instahouse
+
 #database_name: "PostgreSQL" | "Convex"
 
 #language_name: "Coda" | "AppSmith" | "TypeScript" | "Rust" | "SQL"
