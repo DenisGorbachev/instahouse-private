@@ -6,7 +6,9 @@
 
 [![Build](https://github.com/DenisGorbachev/instahouse-private/actions/workflows/ci.yml/badge.svg)](https://github.com/DenisGorbachev/instahouse-private)
 
+<!-- crate documentation start -->
 This is a module-level comment for a Rust lib
+<!-- crate documentation end -->
 
 ## Installation
 

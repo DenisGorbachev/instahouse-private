@@ -1,4 +1,4 @@
-use subtype::{transform_as_validate_as_check, Check};
+use subtype::{Check, transform_as_validate_as_check};
 
 pub struct IsNumeric;
 

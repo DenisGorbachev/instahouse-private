@@ -1,7 +1,7 @@
-use strum::EnumIter;
-use strum::{Display, VariantArray};
 #[allow(dead_code)]
 pub use Country::*;
+use strum::EnumIter;
+use strum::{Display, VariantArray};
 
 #[derive(Display, EnumIter, VariantArray, Ord, PartialOrd, Eq, PartialEq, Hash, Clone, Copy, Debug)]
 pub enum Country {

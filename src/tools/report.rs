@@ -40,7 +40,14 @@ impl Report {
 
             let current_revenue = stub!(u64);
             average_revenue += (current_revenue as f64 - average_revenue) / i as f64;
-            i += 1;
+            i = match i.checked_add(1) {
+                Some(next_i) => next_i,
+                None => {
+                    return Err(ReportCreateError::IndexOverflow {
+                        i,
+                    });
+                }
+            };
         }
 
         Ok(Self {
@@ -54,6 +61,7 @@ impl Report {
 #[derive(Error, Display, From, Eq, PartialEq, Clone, Debug)]
 pub enum ReportCreateError {
     StateRun(StateRunError),
+    IndexOverflow { i: u64 },
 }
 
 #[derive(new, Error, Display, Eq, PartialEq, Clone, Debug)]

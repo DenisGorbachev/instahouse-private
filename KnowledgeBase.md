@@ -47,8 +47,8 @@
 
 * Notes after looking at [Панган Ко-Панган / Жилье | Аренда и продажа](https://t.me/kohphangan/442338)
   * Two agents have posted the same house
-    * https://t.me/kohphangan/442338/682607
-    * https://t.me/kohphangan/442338/684998
+    * <https://t.me/kohphangan/442338/682607>
+    * <https://t.me/kohphangan/442338/684998>
   * Some people have posted [RFPs](#request-for-proposals)
 * The landlord may or may not speak the language of the tenant
 

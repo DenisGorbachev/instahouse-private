@@ -1,6 +1,6 @@
-use strum::Display;
 #[allow(dead_code)]
 pub use NaturalMessageRole::*;
+use strum::Display;
 
 #[derive(Display, Ord, PartialOrd, Eq, PartialEq, Hash, Clone, Copy, Debug)]
 pub enum NaturalMessageRole {

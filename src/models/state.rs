@@ -1,10 +1,10 @@
-use crate::{shared, Bank, IndexedPersonValidationErrors, Passport, Person, PersonAction, Property, Shared, StateValidationErrors, ThailandLandDepartment, Validate};
+use crate::{Bank, IndexedPersonValidationErrors, Passport, Person, PersonAction, Property, Shared, StateValidationErrors, ThailandLandDepartment, Validate, shared};
 use derive_getters::Getters;
 use derive_more::{From, Into};
 use derive_new::new;
 use itertools::Itertools;
-use rand::seq::SliceRandom;
 use rand::Rng;
+use rand::seq::SliceRandom;
 use std::rc::Rc;
 use stub_macro::stub;
 use time::{Duration, OffsetDateTime};
@@ -86,7 +86,8 @@ impl State {
             self.persons.push(shared(person));
         }
         // TODO: Should we actually increment by second or longer?
-        self.now += Duration::SECOND;
+        // SAFETY: If simulated time reaches the representable maximum, keeping it at that maximum is the least lossy non-panicking behavior.
+        self.now = self.now.saturating_add(Duration::SECOND);
     }
 
     pub fn run_n(&mut self, rng: &mut impl Rng, mut steps: u64) -> Result<(), StateValidationErrors> {
@@ -97,7 +98,11 @@ impl State {
             if !errors.is_empty() {
                 return Err(errors);
             }
-            steps -= 1;
+            if let Some(next_steps) = steps.checked_sub(1) {
+                steps = next_steps;
+            } else {
+                return Ok(());
+            }
         }
         Ok(())
     }
